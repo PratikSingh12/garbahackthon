@@ -1,0 +1,804 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Job Hunt Autopilot — Track Every Application. Catch Every Fake Offer.</title>
+  <script src="https://www.gstatic.com/antigravity/web/dev/tailwindcss.min.js"></script>
+  <style>
+    /* Smooth custom scrollbars */
+    ::-webkit-scrollbar { width: 6px; height: 6px; }
+    ::-webkit-scrollbar-track { background: transparent; }
+    ::-webkit-scrollbar-thumb { background: rgba(150, 150, 150, 0.3); border-radius: 4px; }
+    ::-webkit-scrollbar-thumb:hover { background: rgba(150, 150, 150, 0.5); }
+    .badge-scam { background-color: #dc2626; color: #ffffff; }
+    .badge-offer { background-color: #16a34a; color: #ffffff; }
+    .badge-interview { background-color: #0284c7; color: #ffffff; }
+    .badge-applied { background-color: #64748b; color: #ffffff; }
+    .badge-rejected { background-color: #475569; color: #e2e8f0; }
+  </style>
+</head>
+<body class="bg-[var(--background)] text-[var(--foreground)] antialiased min-h-screen p-4 sm:p-6 lg:p-8">
+
+  <!-- Header Banner -->
+  <div class="max-w-7xl mx-auto space-y-6">
+    <div class="bg-[var(--card)] border border-[var(--border)] rounded-2xl p-6 shadow-sm">
+      <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
+        <div>
+          <div class="flex items-center gap-3">
+            <span class="text-3xl">✈️</span>
+            <h1 class="text-2xl sm:text-3xl font-extrabold tracking-tight text-[var(--foreground)]">Job Hunt Autopilot</h1>
+            <span class="bg-blue-500/10 text-blue-500 text-xs font-semibold px-2.5 py-1 rounded-full border border-blue-500/20">v1.0 Layoff Edition</span>
+          </div>
+          <p class="text-[var(--muted-foreground)] text-sm sm:text-base mt-1 font-medium">
+            Track every application. Catch every fake offer. Single classification pipeline with 7-day follow-up radar.
+          </p>
+        </div>
+        
+        <!-- Layoff Story Context Box -->
+        <div class="bg-amber-500/10 border border-amber-500/20 rounded-xl p-3.5 max-w-md">
+          <div class="flex items-center gap-2 text-amber-600 dark:text-amber-400 font-bold text-xs">
+            <span>👤 DEMO SCENARIO</span>
+            <span>•</span>
+            <span>ALEX CHEN (SOFTWARE ENGINEER)</span>
+          </div>
+          <p class="text-xs text-[var(--muted-foreground)] mt-1">
+            Impacted by layoffs 14 days ago. Applied to 20+ roles. Sifting legitimate interviews & offers from predatory upfront-fee scammers.
+          </p>
+        </div>
+      </div>
+
+      <!-- KPI Metrics Strip -->
+      <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3 mt-6">
+        <div class="bg-[var(--background)] border border-[var(--border)] rounded-xl p-3.5 text-center">
+          <div class="text-xs text-[var(--muted-foreground)] font-medium">Total Emails</div>
+          <div class="text-2xl font-bold text-[var(--foreground)] mt-0.5">20</div>
+          <div class="text-xs text-blue-500 font-semibold mt-1">Inbox Loaded</div>
+        </div>
+
+        <div class="bg-[var(--background)] border border-[var(--border)] rounded-xl p-3.5 text-center">
+          <div class="text-xs text-[var(--muted-foreground)] font-medium">💬 Interviews</div>
+          <div class="text-2xl font-bold text-sky-500 mt-0.5">4</div>
+          <div class="text-xs text-[var(--muted-foreground)] mt-1">Uber, Brex, Snow, GH</div>
+        </div>
+
+        <div class="bg-[var(--background)] border border-[var(--border)] rounded-xl p-3.5 text-center">
+          <div class="text-xs text-[var(--muted-foreground)] font-medium">🎉 Legit Offers</div>
+          <div class="text-2xl font-bold text-emerald-500 mt-0.5">2</div>
+          <div class="text-xs text-emerald-600 dark:text-emerald-400 font-semibold mt-1">Linear ($185k), Vercel</div>
+        </div>
+
+        <div class="bg-[var(--background)] border border-[var(--border)] rounded-xl p-3.5 text-center">
+          <div class="text-xs text-[var(--muted-foreground)] font-medium">Rejections</div>
+          <div class="text-2xl font-bold text-slate-400 mt-0.5">4</div>
+          <div class="text-xs text-[var(--muted-foreground)] mt-1">Closed / Archived</div>
+        </div>
+
+        <div class="bg-amber-500/10 border border-amber-500/30 rounded-xl p-3.5 text-center">
+          <div class="text-xs text-amber-600 dark:text-amber-400 font-bold">⏰ Follow-up Due</div>
+          <div class="text-2xl font-bold text-amber-600 dark:text-amber-400 mt-0.5">3</div>
+          <div class="text-xs text-amber-600 dark:text-amber-400 font-semibold mt-1">≥7 Days Silent</div>
+        </div>
+
+        <div class="bg-red-500/10 border-2 border-red-500/40 rounded-xl p-3.5 text-center shadow-sm">
+          <div class="text-xs text-red-600 dark:text-red-400 font-bold">🚨 Fake Offers</div>
+          <div class="text-2xl font-extrabold text-red-600 dark:text-red-400 mt-0.5">5</div>
+          <div class="text-xs bg-red-600 text-white font-bold px-1.5 py-0.5 rounded mt-1 inline-block">BLOCKED</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Navigation Tabs -->
+    <div class="flex flex-wrap items-center justify-between gap-4 border-b border-[var(--border)] pb-2">
+      <div class="flex gap-2">
+        <button id="tab-btn-scams" onclick="switchTab('scams')" class="px-4 py-2 rounded-lg font-bold text-sm bg-red-600 text-white transition shadow-sm">
+          🚨 Fake Offers Flagged (5)
+        </button>
+        <button id="tab-btn-followup" onclick="switchTab('followup')" class="px-4 py-2 rounded-lg font-semibold text-sm bg-[var(--card)] text-[var(--foreground)] border border-[var(--border)] hover:bg-[var(--border)] transition">
+          ⏰ 7-Day Follow-ups (3)
+        </button>
+        <button id="tab-btn-pipeline" onclick="switchTab('pipeline')" class="px-4 py-2 rounded-lg font-semibold text-sm bg-[var(--card)] text-[var(--foreground)] border border-[var(--border)] hover:bg-[var(--border)] transition">
+          📋 Kanban Pipeline (20)
+        </button>
+        <button id="tab-btn-table" onclick="switchTab('table')" class="px-4 py-2 rounded-lg font-semibold text-sm bg-[var(--card)] text-[var(--foreground)] border border-[var(--border)] hover:bg-[var(--border)] transition">
+          🔍 Search & Table
+        </button>
+      </div>
+
+      <div class="flex items-center gap-2 text-xs text-[var(--muted-foreground)]">
+        <span class="inline-block w-2.5 h-2.5 rounded-full bg-emerald-500"></span>
+        <span>Reference Date: Oct 24, 2026</span>
+      </div>
+    </div>
+
+    <!-- ==================== TAB 1: SCAM RADAR (DEFAULT) ==================== -->
+    <div id="tab-content-scams" class="space-y-4">
+      <div class="bg-red-500/10 border-l-4 border-red-600 p-4 rounded-r-xl">
+        <div class="flex items-start gap-3">
+          <span class="text-2xl">🛡️</span>
+          <div>
+            <h3 class="text-base font-bold text-red-600 dark:text-red-400">
+              Scam Radar: 5 Predatory Fake Offers Intercepted & Flagged
+            </h3>
+            <p class="text-xs sm:text-sm text-[var(--muted-foreground)] mt-1">
+              Scammers frequently target laid-off tech professionals with fake high-paying remote offers. Every email is evaluated against Kaggle & Hugging Face fraud patterns. Never send money, deposit third-party checks, or supply SSN/bank details prior to formal interviews.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4" id="scam-cards-grid">
+        <!-- Scam cards populated by JS -->
+      </div>
+    </div>
+
+    <!-- ==================== TAB 2: 7-DAY FOLLOW-UP RADAR ==================== -->
+    <div id="tab-content-followup" class="hidden space-y-4">
+      <div class="bg-amber-500/10 border-l-4 border-amber-500 p-4 rounded-r-xl">
+        <div class="flex items-start gap-3">
+          <span class="text-2xl">⏰</span>
+          <div>
+            <h3 class="text-base font-bold text-amber-600 dark:text-amber-400">
+              Follow-Up Radar: Applications Pending Response for 7+ Days
+            </h3>
+            <p class="text-xs sm:text-sm text-[var(--muted-foreground)] mt-1">
+              Recruiters receive hundreds of inbound resumes. Sending a polite, value-driven follow-up after 7 days keeps your candidacy top-of-mind. Click any card to copy an executive-ready follow-up draft.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-4" id="followup-cards-grid">
+        <!-- Followup cards populated by JS -->
+      </div>
+    </div>
+
+    <!-- ==================== TAB 3: KANBAN PIPELINE ==================== -->
+    <div id="tab-content-pipeline" class="hidden space-y-4">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-3.5" id="kanban-columns">
+        <!-- Kanban stages: Applied, Interview, Rejected, Offer, Scam -->
+      </div>
+    </div>
+
+    <!-- ==================== TAB 4: SEARCH & TABLE ==================== -->
+    <div id="tab-content-table" class="hidden space-y-4">
+      <div class="bg-[var(--card)] border border-[var(--border)] rounded-xl p-4 flex flex-col sm:flex-row gap-3 items-center justify-between">
+        <input 
+          id="search-input" 
+          type="text" 
+          placeholder="Filter by company, role, or stage..." 
+          onkeyup="renderTable()"
+          class="w-full sm:w-80 bg-[var(--background)] border border-[var(--border)] rounded-lg px-3 py-2 text-sm text-[var(--foreground)] placeholder-[var(--muted-foreground)] focus:outline-none focus:ring-2 focus:ring-blue-500"
+        />
+        <div class="flex gap-2 w-full sm:w-auto">
+          <select id="stage-filter-select" onchange="renderTable()" class="bg-[var(--background)] border border-[var(--border)] rounded-lg px-3 py-2 text-sm text-[var(--foreground)]">
+            <option value="ALL">All Stages (20)</option>
+            <option value="offer">Legit Offers (2)</option>
+            <option value="interview">Interviews (4)</option>
+            <option value="applied">Applied / Pending (5)</option>
+            <option value="rejected">Rejected (4)</option>
+            <option value="scam">Fake Offers (5)</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="bg-[var(--card)] border border-[var(--border)] rounded-xl overflow-x-auto shadow-sm">
+        <table class="w-full text-left text-sm">
+          <thead class="bg-[var(--background)] border-b border-[var(--border)] text-xs text-[var(--muted-foreground)] uppercase">
+            <tr>
+              <th class="p-3">Stage</th>
+              <th class="p-3">Company</th>
+              <th class="p-3">Role</th>
+              <th class="p-3">Date</th>
+              <th class="p-3">Status / Follow-up</th>
+              <th class="p-3 text-right">Action</th>
+            </tr>
+          </thead>
+          <tbody id="table-body" class="divide-y divide-[var(--border)]">
+            <!-- Table rows populated by JS -->
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Email Inspector Modal -->
+  <div id="email-modal" class="hidden fixed inset-0 z-50 bg-black/60 backdrop-blur-xs flex items-center justify-center p-4">
+    <div class="bg-[var(--card)] border border-[var(--border)] rounded-2xl max-w-2xl w-full p-6 shadow-2xl space-y-4 max-h-[90vh] overflow-y-auto">
+      <div class="flex items-center justify-between border-b border-[var(--border)] pb-3">
+        <div class="flex items-center gap-2">
+          <span id="modal-stage-badge" class="px-2 py-0.5 rounded text-xs font-bold uppercase"></span>
+          <h3 id="modal-company" class="text-lg font-bold text-[var(--foreground)]"></h3>
+        </div>
+        <button onclick="closeModal()" class="text-[var(--muted-foreground)] hover:text-[var(--foreground)] text-lg font-bold px-2">✕</button>
+      </div>
+
+      <div class="space-y-2 text-xs text-[var(--muted-foreground)]">
+        <div><strong>From:</strong> <span id="modal-sender" class="font-mono text-[var(--foreground)]"></span></div>
+        <div><strong>Subject:</strong> <span id="modal-subject" class="font-semibold text-[var(--foreground)]"></span></div>
+        <div><strong>Date:</strong> <span id="modal-date"></span></div>
+      </div>
+
+      <div id="modal-scam-box" class="hidden bg-red-500/10 border border-red-500/30 rounded-xl p-3 text-xs">
+        <div class="font-bold text-red-600 dark:text-red-400 flex items-center gap-1.5 mb-1">
+          <span>🚨 SCAM FLAGS & REASONS:</span>
+        </div>
+        <ul id="modal-scam-reasons" class="list-disc pl-4 space-y-0.5 text-red-600 dark:text-red-300"></ul>
+      </div>
+
+      <div id="modal-followup-box" class="hidden bg-amber-500/10 border border-amber-500/30 rounded-xl p-3 text-xs">
+        <div class="font-bold text-amber-600 dark:text-amber-400 mb-1">⏰ FOLLOW-UP STATUS:</div>
+        <div id="modal-followup-text" class="text-[var(--foreground)]"></div>
+        <div class="mt-2">
+          <label class="font-semibold text-xs text-[var(--foreground)] block mb-1">Ready-to-Send Email Template:</label>
+          <textarea id="modal-followup-textarea" rows="6" readonly class="w-full bg-[var(--background)] border border-[var(--border)] rounded-lg p-2 font-mono text-xs text-[var(--foreground)]"></textarea>
+          <button onclick="copyFollowupTemplate()" class="mt-2 bg-amber-500 text-white font-bold px-3 py-1.5 rounded-lg text-xs hover:bg-amber-600 transition">
+            📋 Copy Follow-Up Email
+          </button>
+        </div>
+      </div>
+
+      <div>
+        <label class="font-semibold text-xs text-[var(--foreground)] block mb-1">Email Body Payload:</label>
+        <pre id="modal-body" class="bg-[var(--background)] border border-[var(--border)] rounded-xl p-4 text-xs font-mono whitespace-pre-wrap text-[var(--foreground)] max-h-60 overflow-y-auto"></pre>
+      </div>
+
+      <div class="text-right pt-2 border-t border-[var(--border)]">
+        <button onclick="closeModal()" class="px-4 py-2 bg-[var(--border)] text-[var(--foreground)] rounded-lg text-xs font-bold hover:bg-[var(--muted-foreground)]/20 transition">Close</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Master Dataset of 20 emails
+    const EMAILS = [
+      {
+        id: "msg_001",
+        stage: "applied",
+        company: "Stripe",
+        role: "Senior Full Stack Engineer",
+        sender: "Stripe Recruiting <recruiting@stripe.com>",
+        subject: "Thank you for applying to Stripe - Senior Full Stack Engineer",
+        date: "2026-10-21",
+        daysElapsed: 3,
+        followUpDue: false,
+        followUpReason: "Application under review (3d ago). Recruiter review in progress.",
+        isScam: false,
+        scamReasons: [],
+        body: "Hi Alex,\n\nThank you for submitting your application for the Senior Full Stack Engineer role at Stripe. We have received your resume and application details.\n\nOur recruiting team is currently reviewing your background against the requirements for this role. Given the volume of applications, this typically takes 3-5 business days. We will reach out as soon as we have an update.\n\nBest regards,\nStripe Talent Acquisition Team"
+      },
+      {
+        id: "msg_002",
+        stage: "applied",
+        company: "Airbnb",
+        role: "Staff Backend Engineer",
+        sender: "Airbnb Careers <careers@airbnb.com>",
+        subject: "We received your application for Staff Backend Engineer at Airbnb",
+        date: "2026-10-15",
+        daysElapsed: 9,
+        followUpDue: true,
+        followUpReason: "No response in 9 days (threshold: 7d). Candidate follow-up recommended!",
+        isScam: false,
+        scamReasons: [],
+        body: "Hello Alex,\n\nThanks for your interest in Airbnb! We've successfully received your application for Staff Backend Engineer (Core Services, Payments).\n\nOur hiring managers review every application carefully. If your skills and experience match what we're looking for, a recruiter will reach out directly to discuss next steps.\n\nWarm regards,\nThe Airbnb Recruiting Team"
+      },
+      {
+        id: "msg_003",
+        stage: "applied",
+        company: "Datadog",
+        role: "Software Engineer II",
+        sender: "Datadog Talent Team <no-reply@datadoghq.com>",
+        subject: "Application Received: Software Engineer II - Distributed Systems",
+        date: "2026-10-16",
+        daysElapsed: 8,
+        followUpDue: true,
+        followUpReason: "No response in 8 days (threshold: 7d). Candidate follow-up recommended!",
+        isScam: false,
+        scamReasons: [],
+        body: "Dear Alex,\n\nThank you for applying for Software Engineer II - Distributed Systems at Datadog! We appreciate the time you invested in submitting your application.\n\nOur team is reviewing candidate profiles and will follow up if there is a mutual fit. You can track your application status via our career portal.\n\nSincerely,\nDatadog Recruiting"
+      },
+      {
+        id: "msg_004",
+        stage: "applied",
+        company: "Notion",
+        role: "Product Infrastructure Engineer",
+        sender: "Notion Recruiting <jobs@mktg.notion.so>",
+        subject: "Your application to Notion (Product Infrastructure Engineer)",
+        date: "2026-10-12",
+        daysElapsed: 12,
+        followUpDue: true,
+        followUpReason: "No response in 12 days (threshold: 7d). Candidate follow-up recommended!",
+        isScam: false,
+        scamReasons: [],
+        body: "Hi Alex,\n\nWe wanted to let you know that we received your application for the Product Infrastructure Engineer role at Notion.\n\nWe review applications on a rolling basis and will reach back out if your background aligns with our current needs.\n\nBest,\nThe Notion Recruiting Team"
+      },
+      {
+        id: "msg_005",
+        stage: "applied",
+        company: "Figma",
+        role: "Frontend Systems Engineer",
+        sender: "Figma Careers <recruiting@figma.com>",
+        subject: "Thanks for your interest in Figma - Frontend Systems Engineer",
+        date: "2026-10-22",
+        daysElapsed: 2,
+        followUpDue: false,
+        followUpReason: "Applied 2 days ago. Under engineering review.",
+        isScam: false,
+        scamReasons: [],
+        body: "Hey Alex,\n\nThanks for applying to Figma! We've received your application for Frontend Systems Engineer.\n\nOur engineering hiring team is looking over your materials now. We aim to get back to every candidate within one week.\n\nBest,\nFigma Recruiting Team"
+      },
+      {
+        id: "msg_006",
+        stage: "interview",
+        company: "Uber",
+        role: "Senior Infrastructure Engineer",
+        sender: "Sarah Vance <sarah.vance@uber.com>",
+        subject: "Uber Technical Screen Invitation - Alex Chen",
+        date: "2026-10-19",
+        daysElapsed: 5,
+        followUpDue: false,
+        isScam: false,
+        scamReasons: [],
+        body: "Hi Alex,\n\nThank you for applying to Uber. We were really impressed with your distributed systems background and would love to schedule a 30-minute technical recruiter phone screen.\n\nPlease pick a time on my calendar here: https://calendly.com/sarah-vance-uber/recruiter-screen\n\nLooking forward to speaking soon!\n\nBest,\nSarah Vance\nSenior Tech Recruiter, Uber Infrastructure"
+      },
+      {
+        id: "msg_007",
+        stage: "interview",
+        company: "Brex",
+        role: "Senior Backend Engineer",
+        sender: "Brex Recruiting Team <talent@brex.com>",
+        subject: "Next steps: Brex Technical Interview & System Design",
+        date: "2026-10-20",
+        daysElapsed: 4,
+        followUpDue: false,
+        isScam: false,
+        scamReasons: [],
+        body: "Hi Alex,\n\nGreat news! Following your initial resume review, our engineering team would like to invite you to the technical assessment phase for Senior Backend Engineer at Brex.\n\nThe interview will consist of a 60-minute paired coding session on CoderPad followed by a 45-minute system design conversation.\n\nPlease reply with your availability.\n\nCheers,\nBrex Talent Team"
+      },
+      {
+        id: "msg_008",
+        stage: "interview",
+        company: "Snowflake",
+        role: "Senior Distributed Systems Engineer",
+        sender: "Snowflake Talent Acquisition <coordinators@snowflake.com>",
+        subject: "Snowflake Virtual Onsite Interview Confirmation - Alex Chen",
+        date: "2026-10-22",
+        daysElapsed: 2,
+        followUpDue: false,
+        isScam: false,
+        scamReasons: [],
+        body: "Hi Alex,\n\nCongratulations on passing the technical screen! We are excited to invite you to the virtual onsite interview loop for the Senior Distributed Systems Engineer role at Snowflake.\n\nYour loop will consist of 4 rounds (Architecture, Coding, Concurrency & Culture Alignment).\n\nBest,\nSnowflake Recruiting Coordination Team"
+      },
+      {
+        id: "msg_009",
+        stage: "interview",
+        company: "GitHub",
+        role: "Staff Engineer",
+        sender: "Elena Rostova <erostova@github.com>",
+        subject: "GitHub Engineering - Technical Conversation & Architecture Discussion",
+        date: "2026-10-23",
+        daysElapsed: 1,
+        followUpDue: false,
+        isScam: false,
+        scamReasons: [],
+        body: "Hi Alex,\n\nI lead talent for GitHub Actions infrastructure. We reviewed your recent work on CI/CD pipelines and high-throughput microservices and think you would be a great match for our team.\n\nWe would love to invite you for a 45-minute technical conversation with our Director of Engineering next week.\n\nBest regards,\nElena Rostova | GitHub"
+      },
+      {
+        id: "msg_010",
+        stage: "rejected",
+        company: "Google",
+        role: "Software Engineer III / L5",
+        sender: "Google Careers <google-recruiting@google.com>",
+        subject: "Update on your application to Google (Software Engineer III / L5)",
+        date: "2026-10-18",
+        daysElapsed: 6,
+        followUpDue: false,
+        isScam: false,
+        scamReasons: [],
+        body: "Dear Alex,\n\nThank you for your interest in the Software Engineer role at Google. After careful consideration by our hiring committee, we have decided not to move forward with your candidacy for this specific position at this time.\n\nWe will retain your resume in our database and wish you the best in your search.\n\nSincerely,\nThe Google Staffing Team"
+      },
+      {
+        id: "msg_011",
+        stage: "rejected",
+        company: "Meta",
+        role: "Software Engineer, Infrastructure",
+        sender: "Meta Careers <recruiting@meta.com>",
+        subject: "Your candidacy for Software Engineer at Meta",
+        date: "2026-10-17",
+        daysElapsed: 7,
+        followUpDue: false,
+        isScam: false,
+        scamReasons: [],
+        body: "Hi Alex,\n\nThank you for giving Meta the opportunity to consider your application for Software Engineer, Infrastructure. While your qualifications are impressive, our team has chosen to pursue other candidates whose experience more closely matches our immediate business needs.\n\nBest regards,\nMeta Talent Acquisition"
+      },
+      {
+        id: "msg_012",
+        stage: "rejected",
+        company: "Netflix",
+        role: "Senior Platform Engineer",
+        sender: "Netflix Talent Team <talent@netflix.com>",
+        subject: "Netflix Engineering Application Status",
+        date: "2026-10-14",
+        daysElapsed: 10,
+        followUpDue: false,
+        isScam: false,
+        scamReasons: [],
+        body: "Hi Alex,\n\nThank you for taking the time to apply for the Senior Platform Engineer role at Netflix. We wanted to let you know that we will not be advancing your candidacy for this opening.\n\nWe appreciate your interest in Netflix and wish you continued success.\n\nWarmly,\nNetflix Talent Operations"
+      },
+      {
+        id: "msg_013",
+        stage: "rejected",
+        company: "Shopify",
+        role: "Senior Backend Developer",
+        sender: "Shopify Talent Acquisition <talent@shopify.com>",
+        subject: "Shopify: Thank you for your application",
+        date: "2026-10-13",
+        daysElapsed: 11,
+        followUpDue: false,
+        isScam: false,
+        scamReasons: [],
+        body: "Hey Alex,\n\nThank you for applying to Shopify! At this time, we have decided not to proceed with your application. Our team reviewed many strong applications, and we had to make some difficult decisions.\n\nBest,\nThe Shopify Talent Team"
+      },
+      {
+        id: "msg_014",
+        stage: "offer",
+        company: "Linear",
+        role: "Senior Software Engineer",
+        sender: "Karri Saarinen <karri@linear.app>",
+        subject: "Offer of Employment - Senior Software Engineer at Linear",
+        date: "2026-10-23",
+        daysElapsed: 1,
+        followUpDue: false,
+        isScam: false,
+        scamReasons: [],
+        body: "Dear Alex,\n\nOn behalf of Linear Orbit, Inc., I am thrilled to extend a formal offer of employment for Senior Software Engineer.\n\nOffer Details:\n- Role: Senior Software Engineer (Remote, US)\n- Annual Base Salary: $185,000 USD\n- Stock Options: 28,000 ISOs (4-year vesting, 1-year cliff)\n- Health/Dental/Vision 100% covered\n- Remote office stipend: $3,000/yr\n- Unlimited PTO\n\nPlease execute the DocuSign agreement by Friday, October 30.\n\nWarm regards,\nKarri Saarinen | Linear"
+      },
+      {
+        id: "msg_015",
+        stage: "offer",
+        company: "Vercel",
+        role: "Solutions Engineer",
+        sender: "Vercel People Operations <people@vercel.com>",
+        subject: "Congratulations! Offer of Employment: Solutions Engineer at Vercel",
+        date: "2026-10-22",
+        daysElapsed: 2,
+        followUpDue: false,
+        isScam: false,
+        scamReasons: [],
+        body: "Hi Alex,\n\nFollowing your final loop with our VP of Customer Solutions, we are overjoyed to present you with this offer to join Vercel as Solutions Engineer!\n\nCompensation Package:\n- Base Salary: $175,000 per year\n- Variable Bonus: $25,000 annual target\n- Equity: $120,000 in Vercel RSUs\n- Equipment: Latest M3 Max MacBook Pro\n\nPlease electronically sign in Workday by Wednesday, Oct 28.\n\nBest,\nSarah Jenkins | Vercel"
+      },
+      {
+        id: "msg_016",
+        stage: "scam",
+        company: "Apex Global Cloud Solutions",
+        role: "Remote Cloud Engineer ($95/hr)",
+        sender: "HR Global Desk <hr.apexsolutions2024@gmail.com>",
+        subject: "URGENT: Selected for Remote Cloud Engineer ($95/hr) - Training Registration Fee Required",
+        date: "2026-10-21",
+        daysElapsed: 3,
+        followUpDue: false,
+        isScam: true,
+        scamReasons: [
+          "Demands upfront training, registration, or certification fee ($250 / ₹18,500) before onboarding.",
+          "Requests payment via personal UPI ID or Cryptocurrency (USDT).",
+          "Recruiter claims enterprise hiring authority using free personal webmail (@gmail.com).",
+          "Extended immediate high-paying offer ($95/hr) without any technical interviews."
+        ],
+        body: "Dear Alex Chen,\n\nCongratulations! You have been selected directly for Senior Cloud Engineer ($95.00/hr, $190k/yr).\n\nMandatory Next Step: Under company HR compliance, you must complete a 3-day AWS certification. You are required to pay a refundable registration fee of $250 (or ₹18,500 via UPI/Crypto) before laptop dispatch. Reimbursed in first paycheck.\n\nTransfer to UPI: apexcloudrecruitment@okhdfcbank or USDT Wallet: 0x71C... and reply with screenshot."
+      },
+      {
+        id: "msg_017",
+        stage: "scam",
+        company: "Swift Logistics",
+        role: "Senior Systems Analyst",
+        sender: "Swift Logistics Recruiting <recruiting-desk@swiftlogistics-careers-portal.net>",
+        subject: "IMMEDIATE HIRE: Home Office Equipment & Offer of Employment - Swift Logistics",
+        date: "2026-10-20",
+        daysElapsed: 4,
+        followUpDue: false,
+        isScam: true,
+        scamReasons: [
+          "Classic check-cashing / equipment purchase advance fraud: Sending fake $4,850 check and requesting $3,900 wire back to 'vendor'.",
+          "Sender domain 'swiftlogistics-careers-portal.net' matches known fraudulent lookalike pattern.",
+          "High urgency demands to wire money via Zelle or Western Union."
+        ],
+        body: "Attention Alex Chen,\n\nYou have been hired as Senior Systems Analyst ($65/hr). Our finance team is mailing you a cashier's check of $4,850. Deposit the check into your personal bank account, keep $950 as your sign-on bonus, and wire the remaining $3,900 via Zelle/Western Union to our equipment vendor (TechSupplies Global) to ship your laptop."
+      },
+      {
+        id: "msg_018",
+        stage: "scam",
+        company: "Daily Task Desk / Tanya HR",
+        role: "WFH Software Engineer / Review Tasks",
+        sender: "Tanya Sharma HR <recruiter.tanya.hr@outlook.com>",
+        subject: "Job Confirmation: WFH Software Engineer - Daily Payouts (Task Based)",
+        date: "2026-10-23",
+        daysElapsed: 1,
+        followUpDue: false,
+        isScam: true,
+        scamReasons: [
+          "Task-based rating scam with Hinglish phrasing ('ekdum genuine work from home') and promised daily payouts (₹3,000 - ₹8,000).",
+          "Directs applicant to unmonitored Telegram channel (@HR_Tanya_Recruiter) or WhatsApp.",
+          "Bypasses standard interview process with immediate '₹2,000 joining bonus'.",
+          "Recruiter using free webmail (@outlook.com)."
+        ],
+        body: "Dear Candidate,\n\nGood news! Your profile selected for Google Review, Code Rating tasks from home. Earn ₹3,000 to ₹8,000 daily payout directly in bank account! No interview needed. Joining bonus ₹2,000. Ekdum genuine work from home opportunity approved by Govt certified agency. Contact HR Manager Tanya on Telegram @HR_Tanya_Recruiter or WhatsApp +91-9876543210."
+      },
+      {
+        id: "msg_019",
+        stage: "scam",
+        company: "Horizon Health Systems",
+        role: "Software Engineer",
+        sender: "Horizon Health Onboarding <hr-verification@horizon-onlinework.com>",
+        subject: "Mandatory Background Verification & Employment Form - Horizon Health Systems",
+        date: "2026-10-19",
+        daysElapsed: 5,
+        followUpDue: false,
+        isScam: true,
+        scamReasons: [
+          "Demands sensitive identity documents (Social Security Card/SSN, Aadhaar, Driver's License) and bank account/routing numbers prior to scheduling an interview.",
+          "High-pressure deadline (submit within 24 hours to secure interview slot).",
+          "Sender domain 'horizon-onlinework.com' matches predatory lookalike pattern."
+        ],
+        body: "Dear Alex Chen,\n\nBefore we can schedule your interview, our security policy requires candidate pre-verification. Please immediately reply with photos of: 1. Driver's License/Passport, 2. SSN or Aadhaar Card, 3. Voided check with bank account and routing number. Interviews cannot be scheduled until these documents are submitted within 24 hours."
+      },
+      {
+        id: "msg_020",
+        stage: "scam",
+        company: "Apex Web3 Labs",
+        role: "Blockchain Systems Engineer ($160,000)",
+        sender: "Apex Web3 HR <apex-crypto-hr@protonmail.com>",
+        subject: "Offer Letter: Blockchain Systems Engineer at Apex Innovations ($160,000)",
+        date: "2026-10-22",
+        daysElapsed: 2,
+        followUpDue: false,
+        isScam: true,
+        scamReasons: [
+          "Demands $150 USD background verification fee paid to private cryptocurrency USDT wallet.",
+          "Extended $160,000 direct offer while explicitly skipping technical interview rounds.",
+          "Recruiter using anonymous ProtonMail address (@protonmail.com)."
+        ],
+        body: "Hello Alex,\n\nWe reviewed your GitHub and decided to skip the technical round and extend a direct offer of $160,000/yr. To activate your contract, our partner requires a background verification fee of $150 USD paid in crypto. Please send 150 USDT (TRC-20) to wallet: TXYZ9988CryptoVerifyProtocol7766 and email hash."
+      }
+    ];
+
+    function switchTab(tab) {
+      document.getElementById('tab-content-scams').classList.add('hidden');
+      document.getElementById('tab-content-followup').classList.add('hidden');
+      document.getElementById('tab-content-pipeline').classList.add('hidden');
+      document.getElementById('tab-content-table').classList.add('hidden');
+
+      const tabs = ['scams', 'followup', 'pipeline', 'table'];
+      tabs.forEach(t => {
+        const btn = document.getElementById(`tab-btn-${t}`);
+        btn.className = "px-4 py-2 rounded-lg font-semibold text-sm bg-[var(--card)] text-[var(--foreground)] border border-[var(--border)] hover:bg-[var(--border)] transition";
+      });
+
+      document.getElementById(`tab-content-${tab}`).classList.remove('hidden');
+      const activeBtn = document.getElementById(`tab-btn-${tab}`);
+      if (tab === 'scams') {
+        activeBtn.className = "px-4 py-2 rounded-lg font-bold text-sm bg-red-600 text-white transition shadow-sm";
+      } else if (tab === 'followup') {
+        activeBtn.className = "px-4 py-2 rounded-lg font-bold text-sm bg-amber-500 text-white transition shadow-sm";
+      } else {
+        activeBtn.className = "px-4 py-2 rounded-lg font-bold text-sm bg-blue-600 text-white transition shadow-sm";
+      }
+    }
+
+    function renderScamCards() {
+      const grid = document.getElementById('scam-cards-grid');
+      const scams = EMAILS.filter(e => e.isScam);
+      grid.innerHTML = scams.map((s, idx) => `
+        <div class="bg-[var(--card)] border-2 border-red-500/50 rounded-xl p-5 shadow-sm hover:shadow-md transition space-y-3">
+          <div class="flex items-start justify-between gap-2">
+            <div>
+              <span class="text-xs bg-red-600 text-white font-extrabold px-2 py-0.5 rounded tracking-wide">FLAGGED FAKE OFFER</span>
+              <h4 class="text-base font-bold text-[var(--foreground)] mt-1.5">${s.company}</h4>
+              <p class="text-xs text-[var(--muted-foreground)]">${s.role}</p>
+            </div>
+            <span class="text-2xl">🚫</span>
+          </div>
+
+          <div class="text-xs bg-red-500/10 border border-red-500/20 rounded-lg p-2.5 text-red-600 dark:text-red-300 space-y-1">
+            <div class="font-bold">🚨 Scam Red Flags Identified:</div>
+            <ul class="list-disc pl-4 space-y-1">
+              ${s.scamReasons.map(r => `<li>${r}</li>`).join('')}
+            </ul>
+          </div>
+
+          <div class="pt-2 border-t border-[var(--border)] flex items-center justify-between text-xs text-[var(--muted-foreground)]">
+            <span class="truncate max-w-[180px]">From: ${s.sender}</span>
+            <button onclick="openModal('${s.id}')" class="text-blue-500 hover:underline font-semibold">Inspect Email →</button>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    function renderFollowupCards() {
+      const grid = document.getElementById('followup-cards-grid');
+      const followups = EMAILS.filter(e => e.followUpDue);
+      grid.innerHTML = followups.map(f => `
+        <div class="bg-[var(--card)] border border-amber-500/40 rounded-xl p-5 shadow-sm space-y-3">
+          <div class="flex items-start justify-between">
+            <div>
+              <span class="text-xs bg-amber-500 text-white font-bold px-2 py-0.5 rounded">
+                ${f.daysElapsed} DAYS SILENT (≥7d)
+              </span>
+              <h4 class="text-base font-bold text-[var(--foreground)] mt-2">${f.company}</h4>
+              <p class="text-xs text-[var(--muted-foreground)]">${f.role}</p>
+            </div>
+            <span class="text-2xl">⏰</span>
+          </div>
+
+          <div class="bg-amber-500/10 border border-amber-500/20 rounded-lg p-3 text-xs text-[var(--foreground)]">
+            <div class="font-bold text-amber-600 dark:text-amber-400">Action Recommended:</div>
+            <p class="mt-1 text-[var(--muted-foreground)]">Applied on ${f.date}. Send polite follow-up to check recruiter loop status.</p>
+          </div>
+
+          <div class="pt-2 border-t border-[var(--border)] flex items-center justify-between">
+            <span class="text-xs text-[var(--muted-foreground)]">Alex Chen (Candidate)</span>
+            <button onclick="openModal('${f.id}')" class="bg-amber-500 hover:bg-amber-600 text-white font-bold text-xs px-3 py-1.5 rounded-lg transition">
+              ✉️ View & Copy Follow-up
+            </button>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    function renderKanban() {
+      const container = document.getElementById('kanban-columns');
+      const stages = [
+        { key: "applied", label: "Applied / Pending", color: "border-slate-500", badge: "bg-slate-500" },
+        { key: "interview", label: "Interviews", color: "border-sky-500", badge: "bg-sky-500" },
+        { key: "offer", label: "Legit Offers", color: "border-emerald-500", badge: "bg-emerald-500" },
+        { key: "rejected", label: "Rejected", color: "border-slate-400", badge: "bg-slate-400" },
+        { key: "scam", label: "🚨 Fake Offers", color: "border-red-500", badge: "bg-red-600" }
+      ];
+
+      container.innerHTML = stages.map(st => {
+        const items = EMAILS.filter(e => e.stage === st.key);
+        return `
+          <div class="bg-[var(--card)] border border-[var(--border)] rounded-xl p-3 flex flex-col h-full shadow-xs">
+            <div class="flex items-center justify-between pb-2 mb-2 border-b border-[var(--border)]">
+              <span class="text-xs font-bold text-[var(--foreground)] uppercase tracking-wider">${st.label}</span>
+              <span class="${st.badge} text-white text-xs font-bold px-2 py-0.5 rounded-full">${items.length}</span>
+            </div>
+            <div class="space-y-2.5 flex-1 overflow-y-auto max-h-[600px] pr-1">
+              ${items.map(item => `
+                <div onclick="openModal('${item.id}')" class="cursor-pointer bg-[var(--background)] border border-[var(--border)] hover:border-blue-500 rounded-lg p-3 transition shadow-2xs space-y-1.5">
+                  <div class="flex items-center justify-between">
+                    <span class="font-bold text-xs text-[var(--foreground)] truncate max-w-[120px]">${item.company}</span>
+                    <span class="text-[11px] text-[var(--muted-foreground)] font-mono">${item.date.slice(5)}</span>
+                  </div>
+                  <p class="text-xs text-[var(--muted-foreground)] line-clamp-1">${item.role}</p>
+                  ${item.followUpDue ? `<span class="inline-block text-[11px] bg-amber-500 text-white font-bold px-1.5 py-0.2 rounded">⚠️ Follow-up Due (${item.daysElapsed}d)</span>` : ''}
+                  ${item.isScam ? `<span class="inline-block text-[11px] bg-red-600 text-white font-bold px-1.5 py-0.2 rounded">🚫 BLOCKED</span>` : ''}
+                </div>
+              `).join('')}
+            </div>
+          </div>
+        `;
+      }).join('');
+    }
+
+    function renderTable() {
+      const q = (document.getElementById('search-input')?.value || '').toLowerCase();
+      const stageFilter = document.getElementById('stage-filter-select')?.value || 'ALL';
+      const tbody = document.getElementById('table-body');
+
+      const filtered = EMAILS.filter(e => {
+        const matchesQuery = e.company.toLowerCase().includes(q) || e.role.toLowerCase().includes(q) || e.subject.toLowerCase().includes(q);
+        const matchesStage = stageFilter === 'ALL' || e.stage === stageFilter;
+        return matchesQuery && matchesStage;
+      });
+
+      tbody.innerHTML = filtered.map(item => {
+        let stageBadge = "";
+        if (item.stage === 'offer') stageBadge = `<span class="badge-offer text-xs px-2 py-0.5 rounded font-bold">OFFER</span>`;
+        else if (item.stage === 'interview') stageBadge = `<span class="badge-interview text-xs px-2 py-0.5 rounded font-bold">INTERVIEW</span>`;
+        else if (item.stage === 'scam') stageBadge = `<span class="badge-scam text-xs px-2 py-0.5 rounded font-bold">FAKE OFFER</span>`;
+        else if (item.stage === 'rejected') stageBadge = `<span class="badge-rejected text-xs px-2 py-0.5 rounded">REJECTED</span>`;
+        else stageBadge = `<span class="badge-applied text-xs px-2 py-0.5 rounded font-medium">APPLIED</span>`;
+
+        let statusText = `<span class="text-xs text-[var(--muted-foreground)]">In review (${item.daysElapsed}d ago)</span>`;
+        if (item.stage === 'offer') statusText = `<span class="text-xs text-emerald-600 dark:text-emerald-400 font-bold">🎉 Formal Offer Extended</span>`;
+        else if (item.stage === 'interview') statusText = `<span class="text-xs text-sky-600 dark:text-sky-400 font-bold">💬 Screen / Loop Active</span>`;
+        else if (item.stage === 'rejected') statusText = `<span class="text-xs text-slate-400">Archived</span>`;
+        else if (item.isScam) statusText = `<span class="text-xs text-red-600 font-bold">🚫 BLOCKED FRAUD</span>`;
+        else if (item.followUpDue) statusText = `<span class="text-xs text-amber-600 dark:text-amber-400 font-bold">⚠️ Follow-up Due (${item.daysElapsed}d)</span>`;
+
+        return `
+          <tr class="hover:bg-[var(--background)] transition">
+            <td class="p-3">${stageBadge}</td>
+            <td class="p-3 font-bold text-[var(--foreground)]">${item.company}</td>
+            <td class="p-3 text-[var(--muted-foreground)]">${item.role}</td>
+            <td class="p-3 text-xs font-mono text-[var(--muted-foreground)]">${item.date}</td>
+            <td class="p-3">${statusText}</td>
+            <td class="p-3 text-right">
+              <button onclick="openModal('${item.id}')" class="text-blue-500 hover:underline text-xs font-semibold">Inspect</button>
+            </td>
+          </tr>
+        `;
+      }).join('');
+    }
+
+    let activeModalItem = null;
+
+    function openModal(id) {
+      const item = EMAILS.find(e => e.id === id);
+      if (!item) return;
+      activeModalItem = item;
+
+      document.getElementById('modal-company').innerText = item.company;
+      document.getElementById('modal-sender').innerText = item.sender;
+      document.getElementById('modal-subject').innerText = item.subject;
+      document.getElementById('modal-date').innerText = item.date + ` (${item.daysElapsed} days ago)`;
+      document.getElementById('modal-body').innerText = item.body;
+
+      const badge = document.getElementById('modal-stage-badge');
+      badge.innerText = item.stage.toUpperCase();
+      badge.className = "px-2 py-0.5 rounded text-xs font-bold uppercase " + (
+        item.stage === 'offer' ? 'badge-offer' :
+        item.stage === 'interview' ? 'badge-interview' :
+        item.stage === 'scam' ? 'badge-scam' :
+        item.stage === 'rejected' ? 'badge-rejected' : 'badge-applied'
+      );
+
+      // Scam Box
+      const scamBox = document.getElementById('modal-scam-box');
+      if (item.isScam) {
+        scamBox.classList.remove('hidden');
+        document.getElementById('modal-scam-reasons').innerHTML = item.scamReasons.map(r => `<li>${r}</li>`).join('');
+      } else {
+        scamBox.classList.add('hidden');
+      }
+
+      // Followup Box
+      const fuBox = document.getElementById('modal-followup-box');
+      if (item.followUpDue) {
+        fuBox.classList.remove('hidden');
+        document.getElementById('modal-followup-text').innerText = `No communication received in ${item.daysElapsed} days (threshold: 7 days). Ready to send follow-up.`;
+        document.getElementById('modal-followup-textarea').value = 
+`Subject: Following up on application: ${item.role} - Alex Chen
+
+Hi ${item.company} Recruiting Team,
+
+I hope you are having a great week!
+
+I recently submitted my application for the ${item.role} position (${item.daysElapsed} days ago) and wanted to briefly reiterate my strong interest in joining ${item.company}.
+
+Having recently led distributed systems initiatives, I am particularly excited about ${item.company}'s engineering challenges and would love the opportunity to contribute to your team.
+
+Please let me know if there are any additional materials, portfolio links, or references I can provide.
+
+Thank you very much for your time and consideration.
+
+Warm regards,
+Alex Chen
+Senior Software Engineer`;
+      } else {
+        fuBox.classList.add('hidden');
+      }
+
+      document.getElementById('email-modal').classList.remove('hidden');
+    }
+
+    function closeModal() {
+      document.getElementById('email-modal').classList.add('hidden');
+      activeModalItem = null;
+    }
+
+    function copyFollowupTemplate() {
+      const textarea = document.getElementById('modal-followup-textarea');
+      navigator.clipboard.writeText(textarea.value).then(() => {
+        alert("✓ Follow-up email template copied to clipboard!");
+      });
+    }
+
+    // Initialize all views
+    renderScamCards();
+    renderFollowupCards();
+    renderKanban();
+    renderTable();
+  </script>
+</body>
+</html>

@@ -1,0 +1,162 @@
+[
+  {
+    "id": "msg_001",
+    "sender": "Stripe Recruiting <recruiting@stripe.com>",
+    "recipient": "Alex Chen <alex.chen.dev@gmail.com>",
+    "subject": "Thank you for applying to Stripe - Senior Full Stack Engineer",
+    "date": "2026-10-21T14:30:00Z",
+    "body": "Hi Alex,\n\nThank you for submitting your application for the Senior Full Stack Engineer role at Stripe. We have received your resume and application details.\n\nOur recruiting team is currently reviewing your background against the requirements for this role. Given the volume of applications, this typically takes 3-5 business days. We will reach out as soon as we have an update.\n\nIn the meantime, you can check our engineering blog to learn more about our infrastructure projects.\n\nBest regards,\nStripe Talent Acquisition Team\nstripe.com/jobs"
+  },
+  {
+    "id": "msg_002",
+    "sender": "Airbnb Careers <careers@airbnb.com>",
+    "recipient": "Alex Chen <alex.chen.dev@gmail.com>",
+    "subject": "We received your application for Staff Backend Engineer at Airbnb",
+    "date": "2026-10-15T09:15:00Z",
+    "body": "Hello Alex,\n\nThanks for your interest in Airbnb! We've successfully received your application for Staff Backend Engineer (Core Services, Payments).\n\nOur hiring managers review every application carefully. If your skills and experience match what we're looking for, a recruiter will reach out directly to discuss next steps.\n\nWarm regards,\nThe Airbnb Recruiting Team"
+  },
+  {
+    "id": "msg_003",
+    "sender": "Datadog Talent Team <no-reply@datadoghq.com>",
+    "recipient": "Alex Chen <alex.chen.dev@gmail.com>",
+    "subject": "Application Received: Software Engineer II - Distributed Systems",
+    "date": "2026-10-16T11:45:00Z",
+    "body": "Dear Alex,\n\nThank you for applying for Software Engineer II - Distributed Systems at Datadog! We appreciate the time you invested in submitting your application.\n\nOur team is reviewing candidate profiles and will follow up if there is a mutual fit. You can track your application status via our career portal.\n\nSincerely,\nDatadog Recruiting"
+  },
+  {
+    "id": "msg_004",
+    "sender": "Notion Recruiting <jobs@mktg.notion.so>",
+    "recipient": "Alex Chen <alex.chen.dev@gmail.com>",
+    "subject": "Your application to Notion (Product Infrastructure Engineer)",
+    "date": "2026-10-12T16:20:00Z",
+    "body": "Hi Alex,\n\nWe wanted to let you know that we received your application for the Product Infrastructure Engineer role at Notion.\n\nWe review applications on a rolling basis and will reach back out if your background aligns with our current needs.\n\nBest,\nThe Notion Recruiting Team"
+  },
+  {
+    "id": "msg_005",
+    "sender": "Figma Careers <recruiting@figma.com>",
+    "recipient": "Alex Chen <alex.chen.dev@gmail.com>",
+    "subject": "Thanks for your interest in Figma - Frontend Systems Engineer",
+    "date": "2026-10-22T18:05:00Z",
+    "body": "Hey Alex,\n\nThanks for applying to Figma! We've received your application for Frontend Systems Engineer.\n\nOur engineering hiring team is looking over your materials now. We aim to get back to every candidate within one week.\n\nBest,\nFigma Recruiting Team"
+  },
+  {
+    "id": "msg_006",
+    "sender": "Sarah Vance <sarah.vance@uber.com>",
+    "recipient": "Alex Chen <alex.chen.dev@gmail.com>",
+    "subject": "Uber Technical Screen Invitation - Alex Chen",
+    "date": "2026-10-19T13:10:00Z",
+    "body": "Hi Alex,\n\nThank you for applying to Uber. We were really impressed with your distributed systems background and would love to schedule a 30-minute technical recruiter phone screen.\n\nDuring this call, we will discuss your recent experience, what you are looking for next, and walk through the engineering interview process at Uber.\n\nPlease pick a time on my calendar here: https://calendly.com/sarah-vance-uber/recruiter-screen\n\nLooking forward to speaking soon!\n\nBest,\nSarah Vance\nSenior Tech Recruiter, Uber Infrastructure"
+  },
+  {
+    "id": "msg_007",
+    "sender": "Brex Recruiting Team <talent@brex.com>",
+    "recipient": "Alex Chen <alex.chen.dev@gmail.com>",
+    "subject": "Next steps: Brex Technical Interview & System Design",
+    "date": "2026-10-20T10:00:00Z",
+    "body": "Hi Alex,\n\nGreat news! Following your initial resume review, our engineering team would like to invite you to the technical assessment phase for Senior Backend Engineer at Brex.\n\nThe interview will consist of a 60-minute paired coding session on CoderPad followed by a 45-minute system design conversation with one of our staff engineers.\n\nPlease reply with your availability over the next three business days (Wednesday through Friday) between 10am - 5pm PT.\n\nCheers,\nBrex Talent Team"
+  },
+  {
+    "id": "msg_008",
+    "sender": "Snowflake Talent Acquisition <coordinators@snowflake.com>",
+    "recipient": "Alex Chen <alex.chen.dev@gmail.com>",
+    "subject": "Snowflake Virtual Onsite Interview Confirmation - Alex Chen",
+    "date": "2026-10-22T15:30:00Z",
+    "body": "Hi Alex,\n\nCongratulations on passing the technical screen! We are excited to invite you to the virtual onsite interview loop for the Senior Distributed Systems Engineer role at Snowflake.\n\nYour loop will consist of 4 rounds (Architecture, Coding, Concurrency & Culture Alignment) scheduled via Zoom.\n\nPlease find your interview preparation guide and confirm your preferred dates using the link below:\nhttps://snowflake.careers/portal/interview-prep?id=SNOW-89211\n\nBest,\nSnowflake Recruiting Coordination Team"
+  },
+  {
+    "id": "msg_009",
+    "sender": "Elena Rostova <erostova@github.com>",
+    "recipient": "Alex Chen <alex.chen.dev@gmail.com>",
+    "subject": "GitHub Engineering - Technical Conversation & Architecture Discussion",
+    "date": "2026-10-23T08:45:00Z",
+    "body": "Hi Alex,\n\nI lead talent for GitHub Actions infrastructure. We reviewed your recent work on CI/CD pipelines and high-throughput microservices and think you would be a great match for our team.\n\nWe would love to invite you for a 45-minute technical conversation with our Director of Engineering next week.\n\nCould you please let me know your availability for Tuesday or Thursday next week?\n\nBest regards,\nElena Rostova\nStaff Technical Sourcer | GitHub"
+  },
+  {
+    "id": "msg_010",
+    "sender": "Google Careers <google-recruiting@google.com>",
+    "recipient": "Alex Chen <alex.chen.dev@gmail.com>",
+    "subject": "Update on your application to Google (Software Engineer III / L5)",
+    "date": "2026-10-18T17:10:00Z",
+    "body": "Dear Alex,\n\nThank you for your interest in the Software Engineer role at Google and for taking the time to share your background with us.\n\nAfter careful consideration by our hiring committee, we have decided not to move forward with your candidacy for this specific position at this time. We receive a very high volume of applications from talented engineers and had to make difficult selections.\n\nWe will retain your resume in our database and may reach out if another role opens that aligns closely with your profile.\n\nWe wish you the best in your job search and professional endeavors.\n\nSincerely,\nThe Google Staffing Team"
+  },
+  {
+    "id": "msg_011",
+    "sender": "Meta Careers <recruiting@meta.com>",
+    "recipient": "Alex Chen <alex.chen.dev@gmail.com>",
+    "subject": "Your candidacy for Software Engineer at Meta",
+    "date": "2026-10-17T11:20:00Z",
+    "body": "Hi Alex,\n\nThank you for giving Meta the opportunity to consider your application for Software Engineer, Infrastructure.\n\nWhile your qualifications and experience are impressive, our team has chosen to pursue other candidates whose experience more closely matches our immediate business needs for this particular opening.\n\nPlease keep an eye on our careers portal (metacareers.com) for future opportunities that align with your skillset.\n\nThank you again for your time and interest in Meta.\n\nBest regards,\nMeta Talent Acquisition"
+  },
+  {
+    "id": "msg_012",
+    "sender": "Netflix Talent Team <talent@netflix.com>",
+    "recipient": "Alex Chen <alex.chen.dev@gmail.com>",
+    "subject": "Netflix Engineering Application Status",
+    "date": "2026-10-14T19:00:00Z",
+    "body": "Hi Alex,\n\nThank you for taking the time to apply for the Senior Platform Engineer role at Netflix.\n\nWe wanted to let you know that we will not be advancing your candidacy for this opening. We have had an extraordinary pool of applicants and made the tough choice to proceed with other candidates.\n\nWe appreciate your interest in Netflix and wish you continued success in your search.\n\nWarmly,\nNetflix Talent Operations"
+  },
+  {
+    "id": "msg_013",
+    "sender": "Shopify Talent Acquisition <talent@shopify.com>",
+    "recipient": "Alex Chen <alex.chen.dev@gmail.com>",
+    "subject": "Shopify: Thank you for your application",
+    "date": "2026-10-13T14:40:00Z",
+    "body": "Hey Alex,\n\nThank you for applying to Shopify! We truly appreciate the effort you put into your application for Senior Backend Developer.\n\nAt this time, we have decided not to proceed with your application. Our team reviewed many strong applications, and we had to make some difficult decisions.\n\nWe wish you the very best in your search and future endeavors!\n\nBest,\nThe Shopify Talent Team"
+  },
+  {
+    "id": "msg_014",
+    "sender": "Karri Saarinen <karri@linear.app>",
+    "recipient": "Alex Chen <alex.chen.dev@gmail.com>",
+    "subject": "Offer of Employment - Senior Software Engineer at Linear",
+    "date": "2026-10-23T16:00:00Z",
+    "body": "Dear Alex,\n\nOn behalf of Linear Orbit, Inc., I am thrilled to extend a formal offer of employment for the position of Senior Software Engineer, reporting directly to our Head of Engineering.\n\nSummary of Offer Details:\n- Role: Senior Software Engineer (Remote, US)\n- Annual Base Salary: $185,000 USD\n- Stock Options: 28,000 Incentive Stock Options (ISO), 4-year vesting with a 1-year cliff\n- Comprehensive health, dental, and vision insurance covered 100%\n- Annual remote office stipend: $3,000\n- Unlimited PTO (recommended 25 days minimum)\n\nPlease review and execute the official offer letter and non-disclosure agreement via DocuSign at: https://docusign.net/linear-offer/alex-chen-2026\n\nWe kindly request your response by Friday, October 30, 2026. We would love to have you build the future of software tools with us!\n\nWarm regards,\nKarri Saarinen\nCEO & Co-founder, Linear"
+  },
+  {
+    "id": "msg_015",
+    "sender": "Vercel People Operations <people@vercel.com>",
+    "recipient": "Alex Chen <alex.chen.dev@gmail.com>",
+    "subject": "Congratulations! Offer of Employment: Solutions Engineer at Vercel",
+    "date": "2026-10-22T14:15:00Z",
+    "body": "Hi Alex,\n\nFollowing your final loop with our VP of Customer Solutions and the team, we are overjoyed to present you with this offer to join Vercel as Solutions Engineer!\n\nCompensation Package Overview:\n- Base Salary: $175,000 per year\n- Target Variable Bonus: $25,000 annual\n- Equity: $120,000 in Vercel Restricted Stock Units (RSUs)\n- Equipment: Latest M3 Max MacBook Pro + 4K Display shipped before Day 1\n- Comprehensive benefits: Medical, Dental, 401(k) 4% match\n\nThe formal offer letter is attached in your Workday candidate portal. Please electronically sign by Wednesday, October 28.\n\nWelcome to the Vercel team!\n\nBest,\nSarah Jenkins\nDirector of People Operations, Vercel"
+  },
+  {
+    "id": "msg_016",
+    "sender": "HR Global Desk <hr.apexsolutions2024@gmail.com>",
+    "recipient": "Alex Chen <alex.chen.dev@gmail.com>",
+    "subject": "URGENT: Selected for Remote Cloud Engineer ($95/hr) - Training Registration Fee Required",
+    "date": "2026-10-21T09:30:00Z",
+    "body": "Dear Alex Chen,\n\nCongratulations! Based on your outstanding resume profile on LinkedIn, our hiring committee at Apex Global Cloud Solutions has selected you directly for the position of Senior Cloud Engineer (100% Remote).\n\nSalary: $95.00/hour ($190,000/year) + Full healthcare benefits.\n\nImportant Mandatory Next Step:\nUnder company HR compliance regulations, all newly selected remote engineers must undergo a 3-day proprietary AWS Cloud Security Certification module before laptop dispatch. You are required to pay a refundable certification and registration fee of $250 (or ₹18,500 INR via UPI/Crypto).\n\nThis registration fee will be 100% reimbursed in your first bi-weekly paycheck.\n\nPlease transfer immediately to UPI ID: apexcloudrecruitment@okhdfcbank or USDT Wallet: 0x71C... and reply with the payment screenshot so we can dispatch your onboarding kit.\n\nWarm regards,\nDr. Rajesh Verma\nSenior Talent Acquisition Director\nApex Global Cloud Solutions"
+  },
+  {
+    "id": "msg_017",
+    "sender": "Swift Logistics Recruiting <recruiting-desk@swiftlogistics-careers-portal.net>",
+    "recipient": "Alex Chen <alex.chen.dev@gmail.com>",
+    "subject": "IMMEDIATE HIRE: Home Office Equipment & Offer of Employment - Swift Logistics",
+    "date": "2026-10-20T17:45:00Z",
+    "body": "Attention Candidate: Alex Chen,\n\nYou have been confirmed and hired as Senior Systems Analyst at Swift Logistics LLC. Your salary is $65.00/hour.\n\nTo configure your home office workstation, our finance department is sending you a certified corporate cashier's check of $4,850 via FedEx. Upon receipt of this check:\n1. You must deposit the check into your personal bank account.\n2. Deduct $950 as your advance first-week sign-on bonus.\n3. Wire the remaining balance of $3,900 via Zelle or Western Union to our certified equipment vendor (TechSupplies Global) to ship your encrypted Apple laptop and test server.\n\nPlease confirm your mailing address immediately so the check can be mailed tomorrow morning.\n\nRegards,\nMarcus Vance, Hiring Executive\nSwift Logistics Careers Portal"
+  },
+  {
+    "id": "msg_018",
+    "sender": "Tanya Sharma HR <recruiter.tanya.hr@outlook.com>",
+    "recipient": "Alex Chen <alex.chen.dev@gmail.com>",
+    "subject": "Job Confirmation: WFH Software Engineer - Daily Payouts (Task Based)",
+    "date": "2026-10-23T11:00:00Z",
+    "body": "Dear Candidate,\n\nGood news! Your profile has been selected for Google Review, Code Rating and Data Verification tasks from home. Work only 2-3 hours daily and earn ₹3,000 to ₹8,000 daily payout directly in bank account!\n\nNo formal technical interview needed. Immediate joining bonus of ₹2,000 on registration.\nEkdum genuine work from home opportunity approved by Govt certified agency. Don't miss this opportunity in this tough layoff market!\n\nTo start immediately, contact our Senior HR Manager Tanya on Telegram now:\nTelegram ID: @HR_Tanya_Recruiter or WhatsApp at +91-9876543210\n\nReply 'YES' to this email or ping on Telegram directly.\n\nThanks & Regards,\nTanya Sharma\nHR Consultant"
+  },
+  {
+    "id": "msg_019",
+    "sender": "Horizon Health Onboarding <hr-verification@horizon-onlinework.com>",
+    "recipient": "Alex Chen <alex.chen.dev@gmail.com>",
+    "subject": "Mandatory Background Verification & Employment Form - Horizon Health Systems",
+    "date": "2026-10-19T07:15:00Z",
+    "body": "Dear Alex Chen,\n\nWe received your job application for Software Engineer at Horizon Health Systems. Before we can schedule your interview with the engineering team, our security policy requires candidate pre-verification.\n\nPlease immediately reply to this email with clear digital photos/scans of:\n1. Front and back of your Driver's License or Passport\n2. Social Security Card (SSN) or Aadhaar Card\n3. Voided check or bank account number and routing number for future payroll verification\n4. Two personal references with phone numbers\n\nInterviews cannot be scheduled until these documents are submitted. Please provide them within 24 hours to secure your interview slot.\n\nCompliance Team,\nHorizon Health Care Recruiting"
+  },
+  {
+    "id": "msg_020",
+    "sender": "Apex Web3 HR <apex-crypto-hr@protonmail.com>",
+    "recipient": "Alex Chen <alex.chen.dev@gmail.com>",
+    "subject": "Offer Letter: Blockchain Systems Engineer at Apex Innovations ($160,000)",
+    "date": "2026-10-22T06:50:00Z",
+    "body": "Hello Alex,\n\nWe reviewed your GitHub repositories and are extremely impressed. We have decided to skip the technical round and extend a direct offer of $160,000/year as Senior Blockchain Systems Engineer at Apex Web3 Labs.\n\nTo activate your employment contract and generate your employee ID, our third-party compliance partner requires a background verification fee of $150 USD paid in cryptocurrency.\n\nPlease send 150 USDT (TRC-20) to wallet: TXYZ9988CryptoVerifyProtocol7766\nTransaction Hash must be emailed back to this address. Once confirmed, your official contract and Apple MacBook Pro will be dispatched.\n\nSincerely,\nDave Miller\nApex Web3 Recruiting (Proton Secure Desk)"
+  }
+]
